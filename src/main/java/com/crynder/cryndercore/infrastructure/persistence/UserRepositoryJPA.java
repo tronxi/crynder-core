@@ -27,6 +27,12 @@ public class UserRepositoryJPA implements UserRepository {
     }
 
     @Override
+    public Optional<User> findById(String userId) {
+        return userDAO.findById(userId)
+                .map(userMapper::map);
+    }
+
+    @Override
     public void save(User user) {
         UserEntity userEntity = userMapper.map(user);
         userDAO.save(userEntity);

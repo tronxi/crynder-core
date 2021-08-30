@@ -18,7 +18,6 @@ public class UserEntity {
     @NotNull
     private String name;
 
-    @Column
     private String surname;
 
     @NotNull

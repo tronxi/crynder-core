@@ -24,9 +24,8 @@ public class UserDetailSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userService.findByEmail(email)
-                .map(u -> userBuilder(u.getEmail(), u.getPassword()))
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+        com.crynder.cryndercore.domain.models.user.User user = userService.findByEmail(email);
+        return userBuilder(user.getEmail(), user.getPassword());
     }
 
     private User userBuilder(String email, String password) {
